@@ -14,7 +14,7 @@ services:
       start_period: 1m
 
   events_db:
-    image: clickhouse/clickhouse-server:24.3.3.102-alpine
+    image: clickhouse/clickhouse-server:24-alpine
     restart: always
     volumes:
       - ./event-data:/var/lib/clickhouse
@@ -31,7 +31,7 @@ services:
         hard: 262144
 
   server:
-    image: ghcr.io/plausible/community-edition:v2.1.1
+    image: ghcr.io/plausible/community-edition:v2.1.5
     restart: always
     command: sh -c "/entrypoint.sh db createdb && /entrypoint.sh db migrate && /entrypoint.sh run"
     healthcheck:
